@@ -8,12 +8,11 @@ Original file is located at
 """
 
 #!pip install streamlit
-
-from fastai.basic_train import load_learner
 import pickle
 import streamlit as st
 
-classifier=  load_learner('https://github.com/nikhilreddybilla28/pets-oxford-iiit/blob/master/export.pkl')
+picklefile=open("export.pkl","rb")
+classifier=pickle.load(picklefile)
 
 def predict(img):
   pred=classifier.predict(img)
