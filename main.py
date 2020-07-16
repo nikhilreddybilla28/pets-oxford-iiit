@@ -9,13 +9,11 @@ Original file is located at
 
 #!pip install streamlit
 
-from fastai.vision import * 
+from fastai.basic_train import load_learner
 import pickle
 import streamlit as st
 
-from PIL import Image
-classifier= load_learner('pets1.pkl')
-
+classifier=  load_learner('trained_model.pkl')
 
 def predict(img):
   pred=classifier.predict(img)
