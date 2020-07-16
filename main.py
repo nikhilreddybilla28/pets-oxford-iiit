@@ -8,7 +8,7 @@ Original file is located at
 """
 
 #!pip install streamlit
-from fasti.vision import *
+from fastai.vision import *
 from torch.jit.annotations import Optional
 import pickle
 import streamlit as st
