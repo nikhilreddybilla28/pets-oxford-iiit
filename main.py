@@ -8,6 +8,7 @@ Original file is located at
 """
 
 #!pip install streamlit
+from fasti.vision import *
 import pickle
 import streamlit as st
 
