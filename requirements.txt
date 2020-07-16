@@ -1,3 +1,2 @@
-numpy
-pytorch
 fastai
+streamlit

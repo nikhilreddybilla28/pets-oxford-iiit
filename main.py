@@ -14,8 +14,8 @@ import pickle
 import streamlit as st
 
 from PIL import Image
-picklefile = open("pets1.pkl","rb")
-classifier= pickle.load(picklefile)
+classifier= load_learner('pets1.pkl')
+
 
 def predict(img):
   pred=classifier.predict(img)
