@@ -13,7 +13,7 @@ from fastai.basic_train import load_learner
 import pickle
 import streamlit as st
 
-classifier=  load_learner('trained_model.pkl')
+classifier=  load_learner('pets1.pkl')
 
 def predict(img):
   pred=classifier.predict(img)
