@@ -36,13 +36,13 @@ def main():
     st.markdown(html_temp,unsafe_allow_html=True)
     img = st.file_uploader("Choose an image...", type="jpg")
     if img is not None:
-      st.image(image, caption='Uploaded Image.', use_column_width=True)
+      st.image(img, caption='Uploaded Image.', use_column_width=True)
       st.write("")
       st.write("Classifying...")
       result=" "
       if st.button("Predict"):
         result=predict(img)
-      st.success('The output is {}'.format(result))
+      st.success('The above image is {}'.format(result))
 
 if __name__=='__main__':
     main()
