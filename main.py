@@ -13,13 +13,16 @@ from torch.jit.annotations import Optional
 import pickle
 import streamlit as st
 
-picklefile=open("export.pkl","rb")
-classifier=pickle.load(picklefile)
+MODEL_URL = "https://github.com/nikhilreddybilla28/pets-oxford-iiit/raw/master/export.pkl"
+urllib.request.urlretrieve(MODEL_URL, "model.pkl")
+path = Path(".")
 
-def predict(img):
-  pred=classifier.predict(img)
-  print(pred[0])
-  return pred[0]
+learner = load_learner(path, "model.pkl")
+
+def predic(img):
+  pred_class,_,probs = learner.predict(img)
+  print(pred_class + ',' + probs)
+  returnpred
 
 def main():
     st.title("Pet Breed Classifier")
@@ -36,7 +39,7 @@ def main():
       st.write("Classifying...")
       result=" "
       if st.button("Predict"):
-        result=predict(img)
+        result = predic(img)
       st.success('The output is {}'.format(result))
 
 if __name__=='__main__':
