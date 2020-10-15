@@ -9,7 +9,6 @@ Original file is located at
 
 #!pip install streamlit
 from fastai.vision import *
-from torch.jit.annotations import Optional
 import pickle
 import streamlit as st
 import urllib.request
