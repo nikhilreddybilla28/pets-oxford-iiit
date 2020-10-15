@@ -10,10 +10,13 @@ Original file is located at
 #!pip install streamlit
 from fastai.vision import *
 import streamlit as st
-from PIL import Image
+import urllib.request
 import torchvision.transforms as T
 
-defaults.device = torch.device('cpu')
+#defaults.device = torch.device('cpu')
+st.set_option('deprecation.showfileUploaderEncoding', False)
+st.title("PET BREED CLASSIFIER API")
+
 
 path_file = Path('.','export.pkl')
 learner = load_learner(path_file)
@@ -24,7 +27,6 @@ def classifybreed(img):
   return pred_class 
 
 def main():
-    st.title("Pet Breed Classifier")
     html_temp = """
     <div style="background-color:tomato;padding:12px">
     <h2 style="color:white;text-align:center;"> Bredd classifier App </h2>
