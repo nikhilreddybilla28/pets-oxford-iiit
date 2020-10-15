@@ -21,8 +21,9 @@ learner = load_learner(path, "model.pkl")
 
 def predic(img):
   pred_class,_,probs = learner.predict(img)
-  print(pred_class + ',' + probs)
-  returnpred
+  print(pred_class)
+  #prob = max(probs)
+  return pred_class 
 
 def main():
     st.title("Pet Breed Classifier")
