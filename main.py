@@ -11,8 +11,8 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title("PET BREED CLASSIFIER API")
 
 #load model
-path_file = Path('.','export.pkl')
-learner = load_learner(path_file)
+path_file = Path('.')
+learner = load_learner(path_file, 'export.pkl')
 
 def classifybreed(img):
   pred_class, pred_idx, outputs = learner.predict(img)
