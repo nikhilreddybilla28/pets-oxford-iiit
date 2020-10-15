@@ -15,11 +15,8 @@ import torchvision.transforms as T
 
 defaults.device = torch.device('cpu')
 
-MODEL_URL = "https://github.com/nikhilreddybilla28/pets-oxford-iiit/raw/master/export.pkl"
-urllib.request.urlretrieve(MODEL_URL, "model.pkl")
-path = Path(".")
-
-learner = load_learner(path, "model.pkl")
+path_file = Path('.','export.pkl')
+learner = load_learner(path_file)
 
 def classifybreed(img):
   pred_class, pred_idx, outputs = learner.predict(img)
