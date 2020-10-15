@@ -42,7 +42,7 @@ def main():
         if st.button("Predict"):
             st.write("Classifying...")
             result = classifybreed(img)
-        st.success('The output is {}'.format(result))
+            st.success('The output is {}'.format(result))
 
 if __name__=='__main__':
     main()
