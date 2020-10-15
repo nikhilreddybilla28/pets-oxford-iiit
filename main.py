@@ -37,7 +37,7 @@ def main():
         #img_pil = PIL.Image.open(img_bytes)
         #img_tensor = T.ToTensor()(img_pil)
         #img = Image(img_tensor)
-        image = Image.open(img_bytes)
+        img = Image.open(img_bytes)
 
         if st.button("Predict"):
             st.write("Classifying...")
