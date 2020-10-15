@@ -12,6 +12,9 @@ from fastai.vision import *
 from torch.jit.annotations import Optional
 import pickle
 import streamlit as st
+import urllib.request
+
+defaults.device = torch.device('cpu')
 
 MODEL_URL = "https://github.com/nikhilreddybilla28/pets-oxford-iiit/raw/master/export.pkl"
 urllib.request.urlretrieve(MODEL_URL, "model.pkl")
