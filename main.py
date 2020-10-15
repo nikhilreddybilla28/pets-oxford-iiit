@@ -1,10 +1,8 @@
 #!pip install streamlit
-
-import torch
 from fastai.vision import *
 import streamlit as st
 from PIL import Image
-from pathlib import Path
+import urllib.request
 import torchvision.transforms as T
 
 #defaults.device = torch.device('cpu')
@@ -12,8 +10,14 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title("PET BREED CLASSIFIER API")
 
 #load model
-path = Path('.' , 'export.pkl')
-learner = load_learner(path)
+defaults.device = torch.device('cpu')
+
+MODEL_URL = "https://github.com/nikhilreddybilla28/pets-oxford-iiit/raw/master/export.pkl" 
+#"https://drive.google.com/uc?export=download&id=1um_Vk-lilnvOr31D_fSbIbIfGK4sNJoD"
+urllib.request.urlretrieve(MODEL_URL, "model.pkl")
+path = Path(".")
+
+learner = load_learner(path, "model.pkl")
 
 def classifybreed(img):
   pred_class, pred_idx, outputs = learner.predict(img)
