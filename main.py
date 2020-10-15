@@ -7,7 +7,7 @@ import torchvision.transforms as T
 
 #defaults.device = torch.device('cpu')
 st.set_option('deprecation.showfileUploaderEncoding', False)
-st.title("PET BREED CLASSIFIER API")
+st.title("PET BREED CLASSIFIER")
 
 #load model
 defaults.device = torch.device('cpu')
@@ -34,10 +34,10 @@ def main():
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
         st.write("Image Uploaded Successfully:")
-        img_pil = PIL.Image.open(img_bytes)
-        img_tensor = T.ToTensor()(img_pil)
-        img = Image(img_tensor)
-         
+        #img_pil = PIL.Image.open(img_bytes)
+        #img_tensor = T.ToTensor()(img_pil)
+        #img = Image(img_tensor)
+        image = Image.open(img_bytes)
 
         if st.button("Predict"):
             st.write("Classifying...")
