@@ -1,5 +1,6 @@
 #!pip install streamlit
 
+import torch
 from fastai.vision import *
 import streamlit as st
 from PIL import Image
@@ -11,8 +12,8 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title("PET BREED CLASSIFIER API")
 
 #load model
-path_file = Path('.')
-learner = load_learner(path_file, 'export.pkl')
+path = Path('.' , 'export.pkl')
+learner = load_learner(path)
 
 def classifybreed(img):
   pred_class, pred_idx, outputs = learner.predict(img)
