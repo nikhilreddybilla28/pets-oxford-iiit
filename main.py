@@ -10,7 +10,7 @@ Original file is located at
 #!pip install streamlit
 from fastai.vision import *
 import streamlit as st
-import urllib.request
+from PIL import Image
 import torchvision.transforms as T
 
 defaults.device = torch.device('cpu')
