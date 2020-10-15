@@ -11,6 +11,18 @@ Original file is located at
 from fastai.vision import *
 import streamlit as st
 import urllib.request
+import torchvision.transforms as T
+
+mg_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
+if img_bytes is not None:
+    st.write("Image Uploaded Successfully:")
+    img = PIL.Image.open(img_bytes)
+
+    pred_class, pred_idx, outputs = inferencer.predict(img)
+    for out in outputs:
+        st.write(out)
+
+    st.write("Decision: ", pred_class)
 
 defaults.device = torch.device('cpu')
 
@@ -20,10 +32,9 @@ path = Path(".")
 
 learner = load_learner(path, "model.pkl")
 
-def predic(img):
-  pred_class,_,probs = learner.predict(img)
-  print(pred_class)
-  #prob = max(probs)
+def classifybreed(img):
+  pred_class, pred_idx, outputs = inferencer.predict(img)
+  st.write(pred_class)
   return pred_class 
 
 def main():
@@ -34,14 +45,17 @@ def main():
     </div>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
-    img = st.file_uploader("Choose an image...", type="jpg")
-    if img is not None:
-      st.image(image, caption='Uploaded Image.', use_column_width=True)
-      st.write("")
-      st.write("Classifying...")
-      result=" "
-      if st.button("Predict"):
-        result = predic(img)
+    mg_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
+    if img_bytes is not None:
+        st.write("Image Uploaded Successfully:")
+        img_pil = PIL.Image.open(img_bytes)
+        img_tensor = T.ToTensor()(img_pil)
+        img = Image(img_tensor)
+         
+        
+        st.write("Classifying...")
+        if st.button("Predict"):
+            result = classifybreed(img)
       st.success('The output is {}'.format(result))
 
 if __name__=='__main__':
