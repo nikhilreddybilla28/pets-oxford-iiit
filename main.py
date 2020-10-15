@@ -13,17 +13,6 @@ import streamlit as st
 import urllib.request
 import torchvision.transforms as T
 
-mg_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
-if img_bytes is not None:
-    st.write("Image Uploaded Successfully:")
-    img = PIL.Image.open(img_bytes)
-
-    pred_class, pred_idx, outputs = inferencer.predict(img)
-    for out in outputs:
-        st.write(out)
-
-    st.write("Decision: ", pred_class)
-
 defaults.device = torch.device('cpu')
 
 MODEL_URL = "https://github.com/nikhilreddybilla28/pets-oxford-iiit/raw/master/export.pkl"
@@ -33,7 +22,7 @@ path = Path(".")
 learner = load_learner(path, "model.pkl")
 
 def classifybreed(img):
-  pred_class, pred_idx, outputs = inferencer.predict(img)
+  pred_class, pred_idx, outputs = learner.predict(img)
   st.write(pred_class)
   return pred_class 
 
@@ -45,7 +34,7 @@ def main():
     </div>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
-    mg_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
+    img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
         st.write("Image Uploaded Successfully:")
         img_pil = PIL.Image.open(img_bytes)
