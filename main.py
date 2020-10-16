@@ -39,9 +39,9 @@ def main():
     st.markdown(html_temp,unsafe_allow_html=True)
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
-        st.image(img_bytes, width=150)
         st.write("Image Uploaded Successfully:")
         img = open_image(img_bytes)
+        show_image(img)
         #img_pil = PIL.Image.open(img_bytes)
         #img = pil2fast(img_pil)
         #img = open_image(BytesIO(img_bytes))
