@@ -48,8 +48,8 @@ def main():
     st.markdown(html_temp,unsafe_allow_html=True)
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
-        image = Image.open(file_up)
-        st.image(image, caption='Uploaded Image.', use_column_width=True)
+        image = Image.open(img_bytes)
+        st.image(image, caption='Uploaded Image', use_column_width=True)
         st.write("Image Uploaded Successfully:")
         img = open_image(img_bytes)
         show_image(img)
@@ -60,8 +60,8 @@ def main():
         
         if st.button("Classify"):
             #st.write("Classifying...")
-
-            pred_class ,pred_idx, outputs = classifybreed(img)
+            with st.spinner('model is training...'):
+                pred_class ,pred_idx, outputs = classifybreed(img)
             out_label = f'Prediction: {pred_class};\n\n Probability: {outputs[pred_idx]:.03f}'
             st.success(out_label)
             #st.success('The output is {}'.format(result))
