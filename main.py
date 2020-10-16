@@ -37,8 +37,9 @@ def main():
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
         st.write("Image Uploaded Successfully:")
-        img_pil = PIL.Image.open(img_bytes)
-        img = pil2fast(img_pil)
+        img = open_image(img_bytes)
+        #img_pil = PIL.Image.open(img_bytes)
+        #img = pil2fast(img_pil)
         #img = open_image(BytesIO(img_bytes))
 
         if st.button("Predict"):
