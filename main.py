@@ -17,7 +17,7 @@ introduction_str = 'This is a pet breed classifier.  It was made with 7349 image
 st.markdown(introduction_str)
 st.markdown("If the interface hasn't loaded below it's because it's still loading the model across from GitHub, it can take a few seconds.")
 
-image = Image.open('https://raw.githubusercontent.com/nikhilreddybilla28/pets-oxford-iiit/master/breeds.jpg')
+image = Image.open('breeds.jpg')
 st.image(image, caption='Breeds', use_column_width=True)
 
 #load model
