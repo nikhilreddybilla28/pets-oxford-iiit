@@ -39,7 +39,7 @@ def main():
     """
     
     def display_image(url):
-        htmlImage.value= "<img src='" + url + "' width='300'>"
+        htmlImage.value= "<img src='" + url + "' width='1000'>"
         
     DEFAULT_IMG = "https://drive.google.com/uc?export=download&id=15YNd0FawqdOF6d1Fs5w4VELK1UHVJqsv"
     htmlImage = widgets.HTML(value="")
