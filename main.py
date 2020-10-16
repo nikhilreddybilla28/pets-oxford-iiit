@@ -10,9 +10,10 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title("PET BREED CLASSIFIER")
 
 introduction_str = 'This is a pet breed classifier.  It was made with 7349 images corresponding to 37 breeds, taken from The Oxford-IIIT Pet Dataset. It was done by transfer of learning using the resnet34 model from Pytorch and the Fastai libraries. \
-    In the validation of the model, the training error was 5%.'
+    In the validation of the model, the training error was 5%. '
 
 st.markdown(introduction_str)
+st.markdown("If the interface hasn't loaded below it's because it's still loading the model across from GitHub, it can take a few seconds.")
 
 #load model
 defaults.device = torch.device('cpu')
@@ -36,22 +37,34 @@ def main():
     <h2 style="color:white;text-align:center;"> pet breed classifier </h2>
     </div>
     """
+    
+    def display_image(url):
+        htmlImage.value= "<img src='" + url + "' width='300'>"
+        
+    DEFAULT_IMG = "https://drive.google.com/uc?export=download&id=15YNd0FawqdOF6d1Fs5w4VELK1UHVJqsv"
+    htmlImage = widgets.HTML(value="")
+    display_image(DEFAULT_IMG) 
+    
     st.markdown(html_temp,unsafe_allow_html=True)
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
         st.write("Image Uploaded Successfully:")
         img = open_image(img_bytes)
         show_image(img)
+        
         #img_pil = PIL.Image.open(img_bytes)
         #img = pil2fast(img_pil)
         #img = open_image(BytesIO(img_bytes))
-
+        
         if st.button(""):
             st.write("Classifying...")
+            with st.spinner('Wait for it...'):
+                time.sleep(5)
             pred_class ,pred_idx, outputs = classifybreed(img)
             out_label = f'Prediction: {pred_class};\n\n Probability: {outputs[pred_idx]:.03f}'
             st.success(out_label)
             #st.success('The output is {}'.format(result))
-
+            
+           
 if __name__=='__main__':
     main()
