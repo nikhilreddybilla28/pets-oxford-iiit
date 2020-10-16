@@ -1,7 +1,7 @@
 #!pip install streamlit
 from fastai.vision import *
 import streamlit as st
-#from PIL import Image
+from PIL import Image
 import ipywidgets as widgets
 from IPython.display import display
 import urllib.request
@@ -17,6 +17,9 @@ introduction_str = 'This is a pet breed classifier.  It was made with 7349 image
 st.markdown(introduction_str)
 st.markdown("If the interface hasn't loaded below it's because it's still loading the model across from GitHub, it can take a few seconds.")
 
+image = Image.open('./breeeds.PNG')
+st.image(image, caption='Breeds', use_column_width=True)
+
 #load model
 defaults.device = torch.device('cpu')
 
@@ -31,15 +34,9 @@ def classifybreed(img):
   pred_class, pred_idx, outputs = learner.predict(img)
   #st.write(pred_class)
   return pred_class ,pred_idx, outputs
+   
 
-def display_image(url):
-    htmlImage.value= "<img src='" + url + "' width='1000'>"
-        
-DEFAULT_IMG = "https://drive.google.com/uc?export=download&id=15YNd0FawqdOF6d1Fs5w4VELK1UHVJqsv"
-htmlImage = widgets.HTML(value="")
-display_image(DEFAULT_IMG) 
     
-
 def main():
     html_temp = """
     <div style="background-color:black;padding:10px">
@@ -51,6 +48,8 @@ def main():
     st.markdown(html_temp,unsafe_allow_html=True)
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
+        image = Image.open(file_up)
+        st.image(image, caption='Uploaded Image.', use_column_width=True)
         st.write("Image Uploaded Successfully:")
         img = open_image(img_bytes)
         show_image(img)
@@ -60,7 +59,7 @@ def main():
         #img = open_image(BytesIO(img_bytes))
         
         if st.button("Classify"):
-            st.write("Classifying...")
+            #st.write("Classifying...")
 
             pred_class ,pred_idx, outputs = classifybreed(img)
             out_label = f'Prediction: {pred_class};\n\n Probability: {outputs[pred_idx]:.03f}'
