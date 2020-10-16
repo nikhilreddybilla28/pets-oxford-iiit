@@ -1,8 +1,7 @@
 #!pip install streamlit
 from fastai.vision import *
 import streamlit as st
-from PIL import Image
-from io import BytesIO
+#from PIL import Image
 import urllib.request
 import torchvision.transforms as T
 
