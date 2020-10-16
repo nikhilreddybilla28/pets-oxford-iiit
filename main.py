@@ -25,6 +25,9 @@ def classifybreed(img):
   st.write(pred_class)
   return pred_class 
 
+def pil2fast(img):
+  return Image(T.ToTensor()(img))
+
 def main():
     html_temp = """
     <div style="background-color:tomato;padding:12px">
@@ -35,10 +38,9 @@ def main():
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
         st.write("Image Uploaded Successfully:")
-        #img_pil = PIL.Image.open(img_bytes)
-        #img= T.ToTensor()(img_pil)
-        #img = Image(img_tensor)
-        img = open_image(BytesIO(img_bytes))
+        img_pil = PIL.Image.open(img_bytes)
+        img = pil2fast(img_pil)
+        #img = open_image(BytesIO(img_bytes))
 
         if st.button("Predict"):
             st.write("Classifying...")
