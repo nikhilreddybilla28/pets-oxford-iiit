@@ -59,10 +59,9 @@ def main():
         #img = pil2fast(img_pil)
         #img = open_image(BytesIO(img_bytes))
         
-        if st.button(""):
+        if st.button("Classify"):
             st.write("Classifying...")
-            with st.spinner('Wait for it...'):
-                time.sleep(5)
+
             pred_class ,pred_idx, outputs = classifybreed(img)
             out_label = f'Prediction: {pred_class};\n\n Probability: {outputs[pred_idx]:.03f}'
             st.success(out_label)
