@@ -2,6 +2,8 @@
 from fastai.vision import *
 import streamlit as st
 #from PIL import Image
+import ipywidgets as widgets
+from IPython.display import display
 import urllib.request
 import torchvision.transforms as T
 
