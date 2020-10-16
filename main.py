@@ -32,6 +32,13 @@ def classifybreed(img):
   #st.write(pred_class)
   return pred_class ,pred_idx, outputs
 
+def display_image(url):
+    htmlImage.value= "<img src='" + url + "' width='1000'>"
+        
+DEFAULT_IMG = "https://drive.google.com/uc?export=download&id=15YNd0FawqdOF6d1Fs5w4VELK1UHVJqsv"
+htmlImage = widgets.HTML(value="")
+display_image(DEFAULT_IMG) 
+    
 
 def main():
     html_temp = """
@@ -40,13 +47,7 @@ def main():
     </div>
     """
     
-    def display_image(url):
-        htmlImage.value= "<img src='" + url + "' width='1000'>"
-        
-    DEFAULT_IMG = "https://drive.google.com/uc?export=download&id=15YNd0FawqdOF6d1Fs5w4VELK1UHVJqsv"
-    htmlImage = widgets.HTML(value="")
-    display_image(DEFAULT_IMG) 
-    
+
     st.markdown(html_temp,unsafe_allow_html=True)
     img_bytes = st.file_uploader("Squash It!!", type=['png', 'jpg', 'jpeg'])
     if img_bytes is not None:
